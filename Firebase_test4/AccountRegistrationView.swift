@@ -1,6 +1,6 @@
 
 import SwiftUI
-import FirebaseDatabase
+import FirebaseDatabase // FirebaseDatabaseのインポートを追加
 
 struct AccountRegistrationView: View {
     @State private var selectedSNS = "ユーザーのSNSツール1"
@@ -76,7 +76,6 @@ struct AccountRegistrationView: View {
             }
             
             Button(action: {
-                saveUserData()
                 showingConfirmation = true
             }) {
                 Text("確認する")
@@ -95,11 +94,6 @@ struct AccountRegistrationView: View {
         .padding()
     }
     
-    func saveUserData() {
-        // DatabaseManagerを使用してデータを保存する
-        DatabaseManager.saveUserData(selectedSNS: selectedSNS, selectedGenre: selectedGenre, accountName: accountName, fanCount: fanCount, url: url)
-    }
-    
     private func fanCountTitle() -> String {
         if selectedSNS == "Youtube" {
             return "ツール1のチャンネル登録者数"
@@ -114,4 +108,3 @@ struct AccountRegistrationView_Previews: PreviewProvider {
         AccountRegistrationView()
     }
 }
-
