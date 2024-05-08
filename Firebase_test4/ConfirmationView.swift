@@ -6,8 +6,6 @@
 //
 
 import SwiftUI
-import Firebase // Firebaseのインポートを追加
-import FirebaseDatabase // FirebaseDatabaseのインポートを追加
 
 struct ConfirmationView: View {
     @Environment(\.presentationMode) var presentationMode
@@ -77,7 +75,6 @@ struct ConfirmationView: View {
                 
                 HStack(spacing: 20) {
                     Button(action: {
-                        saveUserData() // データを保存する
                         self.presentationMode.wrappedValue.dismiss()
                     })  {
                         Text("登録する")
@@ -114,11 +111,6 @@ struct ConfirmationView: View {
         }
     }
     
-    // データをFirebaseに保存するメソッド
-    private func saveUserData() {
-        DatabaseManager.saveUserData(selectedSNS: selectedSNS, selectedGenre: selectedGenre, accountName: accountName, fanCount: fanCount, url: url)
-    }
-    
     // ファン数のタイトルを選択されたSNSツールに応じて変更するメソッド
     private func fanCountTitle() -> String {
         if selectedSNS == "Youtube" {
@@ -134,7 +126,6 @@ struct ConfirmationView_Previews: PreviewProvider {
         ConfirmationView(selectedSNS: "Youtube", selectedGenre: "音楽", accountName: "サンプルアカウント", fanCount: "1000", url: "https://example.com")
     }
 }
-
 
 
 
